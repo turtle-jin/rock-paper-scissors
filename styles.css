@@ -1,0 +1,32 @@
+
+
+
+
+.container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    border: solid red;
+}
+
+
+
+
+
+.options {
+    display: flex;
+    justify-content: space-evenly;
+    border: solid blue;
+    gap: 2rem;
+}
+
+img {
+    width: 25rem;
+    height: 25rem;
+
+    border: solid 10px yellowgreen;
+    border-radius: 25px;
+}
