@@ -20,34 +20,41 @@
         <div class="scores">
             <div class="userScore">
                 <p>Your Score:</p>
-                <p class="scoreBox">0</p>
+                <p class="scoreBox" id="userScore">0</p>
+            </div>
+            <div class="finalResult">
+                <p id="roundNum"></p>
             </div>
             <div class="computerScore">
                 <p>Computer Score:</p>
-                <p class="scoreBox">0</p>
+                <p class="scoreBox" id="pcScore">0</p>
             </div>
         </div>
         <div class="displaychoices">
             <div class="displayuser">
                 <p>You picked:</p>
-                <p class="choicebox">spacesaver</p>
+                <p class="choicebox" id="userChoiceDisplay">n/a</p>
+            </div>
+            <div class="roundResult">
+                <!-- <p id="roundNum">Round </p> -->
+                <p id="roundResult"></p>
             </div>
             <div class="displaycomputer">
                 <p>Computer picked:</p>
-                <p class="choicebox">spacesaver</p>
+                <p class="choicebox" id="pcChoiceDisplay">n/a</p>
             </div>
         </div>
         <div class="options">
             <div class="rock">
-                <img src="images/rock1.png" alt="rock">
+                <img src="images/rock1.png" alt="rock" id="rock">
                 <p>Rock</p>
             </div>
             <div class="paper">
-                <img src="images/paper1.png" alt="starwars character rey using force">
+                <img src="images/paper1.png" alt="starwars character rey using force" id="paper">
                 <p>Paper</p>
             </div>
             <div class="scissors">
-                <img src="images/scissors2.png" alt="brother day from foundation using hand command">
+                <img src="images/scissors2.png" alt="brother day from foundation using hand command" id="scissors">
                 <p>Scissors</p>
             </div>
         </div>

@@ -60,8 +60,8 @@ button:hover {
 .displaychoices {
     display: flex;
     /* border: salmon solid; */
-    width: 50rem;
-    justify-content: space-between;
+    width: 60rem;
+    justify-content: space-around;
     gap: 5rem;
     text-align: center;
 }
@@ -70,15 +70,25 @@ button:hover {
 .choicebox {
     border: solid var(--medblue);
     min-width: 20rem;
+}
 
+.roundResult,
+.finalResult {
+    color: var(--brown);
+    font-size: 2rem;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 
 .options {
-    display: flex;
+    display: none;
+
     justify-content: space-evenly;
     /* border: solid blue; */
     gap: 3rem;
+    
     
 }
 
