@@ -1,65 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <script>
-        const choiceArray = ["rock", "paper", "scissors"]
-        let playerScore = 0; 
-        let computerScore = 0; 
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <button>Start Game</button>
+        <div class="scores">
+            <div class="userScore">
+                <p>Your Score:</p>
+                <p class="scoreBox" id="userScore">0</p>
+            </div>
+            <div class="finalResult">
+                <p id="roundNum"></p>
+            </div>
+            <div class="computerScore">
+                <p>Computer Score:</p>
+                <p class="scoreBox" id="pcScore">0</p>
+            </div>
+        </div>
+        <div class="displaychoices">
+            <div class="displayuser">
+                <p>You picked:</p>
+                <p class="choicebox" id="userChoiceDisplay">n/a</p>
+            </div>
+            <div class="roundResult">
+                <!-- <p id="roundNum">Round </p> -->
+                <p id="roundResult"></p>
+            </div>
+            <div class="displaycomputer">
+                <p>Computer picked:</p>
+                <p class="choicebox" id="pcChoiceDisplay">n/a</p>
+            </div>
+        </div>
+        <div class="options">
+            <div class="rock">
+                <img src="images/rock1.png" alt="rock" id="rock">
+                <p>Rock</p>
+            </div>
+            <div class="paper">
+                <img src="images/paper1.png" alt="starwars character rey using force" id="paper">
+                <p>Paper</p>
+            </div>
+            <div class="scissors">
+                <img src="images/scissors2.png" alt="brother day from foundation using hand command" id="scissors">
+                <p>Scissors</p>
+            </div>
+        </div>
 
-        // a function that randomly returns "rock", "paper" or "scissors"
-        function getComputerChoice(){
-            let randomNum = Math.floor(Math.random()*3);
-            return choiceArray.at(randomNum);
-        }
-
-        //a function that starts the game and announce the winner
-        function playGame() {
-            let n = 1; 
-            while (n <= 5) {
-                const playerSelection = (prompt("What do you pick? Rock, paper or scissors? Enter Answer here: ")).toLowerCase();
-                const computerSelection = getComputerChoice();
-                console.log(`Round ${n}:`)
-                console.log(playRound(playerSelection, computerSelection));
-                console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`)
-                n += 1; 
-            }
-
-            if (playerScore > computerScore) {
-                console.log("Congratulations, you win!")
-            } else if (playerScore === computerScore) {
-                console.log("You tie!")
-            } else {
-                console.log("Sorry, you lose!")
-            }
-        }
-      
-        // a funciton that plays the round and keeps scores
-        function playRound(playerSelection, computerSelection){
-            playerSelection = playerSelection.toLowerCase();
-            
-            if ((playerSelection === "rock" && computerSelection === "scissors") ||
-                (playerSelection === "paper" && computerSelection === "rock") ||
-                (playerSelection === "scissors" && computerSelection === "paper")) {
-                playerScore += 1; 
-                return `You win! \nComputer picked ${computerSelection.toUpperCase()}. \n${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}!`;
-            } else if (playerSelection === computerSelection) {
-                return `You tie! You both picked ${playerSelection.toUpperCase()}!`;
-            } else {
-                computerScore += 1; 
-                return `You lose! \nComputer picked ${computerSelection.toUpperCase()}. \n${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}!`;
-            }
-        }
-        
         
 
-        playGame();
-    </script>
+
+    </div>
+
 </body>
+
 </html>
-
-
