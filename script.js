@@ -12,7 +12,7 @@
         const userScore = document.querySelector("#userScore");
         const pcScore = document.querySelector("#pcScore");
         const imgs = document.querySelectorAll("img");
-        let n = 1;
+        let n = 1; //round number
 
     
         function getComputerChoice(){
@@ -106,6 +106,7 @@
             
             playerScore = 0;
             computerScore = 0
+            n = 1
             userScore.textContent = "0";
             pcScore.textContent = "0";
             userChoiceDisplay.textContent = "n/a";
