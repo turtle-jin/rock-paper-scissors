@@ -5,19 +5,23 @@
         let computerScore = 0; 
         const options = document.querySelectorAll(".options");
         const btn = document.querySelector("button"); 
+        const roundResult = document.querySelector("#roundResult");
+        const userChoiceDisplay = document.querySelector("#userChoiceDisplay");
+        const pcChoiceDisplay = document.querySelector('#pcChoiceDisplay');
+        const roundNum = document.querySelector("#roundNum");
+        const userScore = document.querySelector("#userScore");
+        const pcScore = document.querySelector("#pcScore");
+        const imgs = document.querySelectorAll("img");
+        let n = 1;
 
-        // a function that randomly returns "rock", "paper" or "scissors"
+    
         function getComputerChoice(){
             let randomNum = Math.floor(Math.random()*3);
             return choiceArray.at(randomNum);
         }
 
-
         // a funciton that plays the round and keeps scores
-        function playRound(playerSelection, computerSelection){
-            const roundResult = document.querySelector("#roundResult");
-                    
-            
+        function playRound(playerSelection, computerSelection){ 
             if ((playerSelection === "rock" && computerSelection === "scissors") ||
                 (playerSelection === "paper" && computerSelection === "rock") ||
                 (playerSelection === "scissors" && computerSelection === "paper")) {
@@ -32,73 +36,64 @@
                 roundResult.textContent = "LOSE";
             }
         }
+
+        function handleEvent() {
+            let playerSelection = this.getAttribute("id"); // Get the id of the clicked element
+            
+            // Display choices on screen
+            userChoiceDisplay.textContent = playerSelection; 
+            let computerSelection = getComputerChoice();
+            pcChoiceDisplay.textContent = computerSelection;     
+            roundNum.textContent = `Round ${n}`;
         
+            playRound(playerSelection, computerSelection);
+            
+            //Display scores on screen
+            userScore.textContent = playerScore;           
+            pcScore.textContent = computerScore;
+            n++;
+
+            if (playerScore == 5 && computerScore == 5) {
+                roundNum.textContent = "It's a tie!"; 
+                resetGame();    
+            } else if (playerScore == 5 && computerScore < 5) {
+                roundNum.textContent = "You Won!";
+                resetGame();
+            } else if (playerScore < 5 && computerScore == 5) {
+                roundNum.textContent = "You Lost!";
+                resetGame();
+            }
+        }
         //a function that starts the game and announce the winner
         function playGame() {
-            let n = 1;
+            
             playerScore = 0;
             computerScore = 0;
-             //remove the start game button
-             btn.style.display = "none";
+            btn.style.display = "none"; //remove the start game button
 
             // Adding click event listener to each option
-            const options = document.querySelectorAll("img");
-            options.forEach(option => {
-
-
-                function handleEvent() {
-                    const playerSelection = this.getAttribute("id"); // Get the id of the clicked element
-                    
-                    // Display choices on screen
-                    const userChoiceDisplay = document.querySelector("#userChoiceDisplay");
-                    userChoiceDisplay.textContent = playerSelection;
-                    const pcChoiceDisplay = document.querySelector('#pcChoiceDisplay');
-                    const computerSelection = getComputerChoice();
-                    pcChoiceDisplay.textContent = computerSelection;
-                
-                    const roundNum = document.querySelector("#roundNum");
-                    roundNum.textContent = `Round ${n}`;
-                
-                    playRound(playerSelection, computerSelection);
-                    const userScore = document.querySelector("#userScore");
-                    userScore.textContent = playerScore;
-                    const pcScore = document.querySelector("#pcScore");
-                    pcScore.textContent = computerScore;
-                
-                    n++;
-    
-                    if (playerScore >= 5 || computerScore >= 5) {
-                        
-                        endGame();
-                        
-                    }
-                }
-                option.removeEventListener("click", handleEvent);
-                option.addEventListener("click", handleEvent);
+            
+            imgs.forEach(img => {  
+                img.addEventListener("click", handleEvent);
             });
         }
              
 
 
         // Function that announces the winner at the end of the game
-        function endGame() {
-            btn.style.display = "";
-            btn.textContent = "Play Again?";
+        function resetGame() {
+            // Hide the img options
+            options.forEach(option => {
+                option.style.display = "";
+            });
+
+            btn.style.display = ""; //restore btn display to default (show button again)
+            btn.textContent = "Play Again?"; 
             roundResult.textContent = "";
             
-            if (playerScore > computerScore) {
-                roundNum.textContent = "You won!";
-                return;
-
-                
-            } else if (playerScore === computerScore) {
-                roundNum.textContent = "You Draw!";
-                return
-  
-            } else {
-                roundNum.textContent = "You lost!";
-                return;
-            } 
+            imgs.forEach(img => {
+                img.removeEventListener("click", handleEvent);
+            });
         }
       
         // start game button
@@ -108,7 +103,9 @@
                 
                 option.style.display = "flex";
             });
-             
+            
+            playerScore = 0;
+            computerScore = 0
             userScore.textContent = "0";
             pcScore.textContent = "0";
             userChoiceDisplay.textContent = "n/a";
@@ -118,3 +115,4 @@
             playGame();
 
         });
+        
