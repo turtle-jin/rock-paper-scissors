@@ -21,6 +21,7 @@ body {
     background-color: var(--darkblue);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: var(--cement);
@@ -37,6 +38,13 @@ body {
     align-items: center;
     gap: 2rem;
     /* border: solid red; */
+}
+
+.game-log-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 1.2rem;
 }
 
 
