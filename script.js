@@ -128,6 +128,8 @@
         // start game button
         
         btn.addEventListener("click", () => {
+            summaryArr.length = 0;
+            gameSummary.textContent = "";
             options.forEach(option => {
                 
                 option.style.display = "flex";
@@ -149,6 +151,8 @@
             displayChoicesClass.forEach(element => {
                 element.style.display = "";
             });
+
+            
             
             
             playGame();
