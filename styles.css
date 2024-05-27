@@ -104,6 +104,15 @@ img:hover {
     border: solid 10px var(--medblue);
 }
 
+#message2 {
+    color: #ca6702;
+    font-size: 1.3rem;
+}
+
+#message1, 
+#gameSummary {
+    font-size: 1rem;
+}
 
 
 @media (max-width:1100px) {

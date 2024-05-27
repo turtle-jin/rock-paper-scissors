@@ -12,7 +12,13 @@
         const userScore = document.querySelector("#userScore");
         const pcScore = document.querySelector("#pcScore");
         const imgs = document.querySelectorAll("img");
-        let n = 1; //round number
+        const message1 = document.querySelector("#message1");
+        const message2 = document.querySelector("#message2");
+        const scoresClass = document.querySelectorAll(".scores");
+        const displayChoicesClass = document.querySelectorAll(".displaychoices")
+        const gameSummary = document.querySelector("#gameSummary")
+        let summaryArr = [];
+        let n = 1; //round#
 
     
         function getComputerChoice(){
@@ -27,13 +33,17 @@
                 (playerSelection === "scissors" && computerSelection === "paper")) {
                 playerScore++; 
                 roundResult.textContent = "WIN";
-                console.log(`player score is ${playerScore}`);
+                message2.textContent = `Winner of this round: You! `
+                summaryArr.push(message2.textContent);
             } else if (playerSelection === computerSelection) {
                 roundResult.textContent = "TIE";
+                message2.textContent = `Winner of this round: No winner.`
+                summaryArr.push(message2.textContent);
             } else {
                 computerScore++; 
-                console.log(`computer score is ${computerScore}`);
                 roundResult.textContent = "LOSE";
+                message2.textContent = `Winner of this round: Computer!`
+                summaryArr.push(message2.textContent);
             }
         }
 
@@ -45,6 +55,8 @@
             let computerSelection = getComputerChoice();
             pcChoiceDisplay.textContent = computerSelection;     
             roundNum.textContent = `Round ${n}`;
+            message1.textContent = `Round ${n}: You chose ${playerSelection}, Computer chose ${computerSelection}.`
+            summaryArr.push(message1.textContent);
         
             playRound(playerSelection, computerSelection);
             
@@ -54,13 +66,16 @@
             n++;
 
             if (playerScore == 5 && computerScore == 5) {
-                roundNum.textContent = "It's a tie!"; 
+                
+                message2.textContent = "Final Winner: No Winner, try again!";
                 resetGame();    
             } else if (playerScore == 5 && computerScore < 5) {
-                roundNum.textContent = "You Won!";
+                
+                message2.textContent = "Final Winner: You!!";
                 resetGame();
             } else if (playerScore < 5 && computerScore == 5) {
-                roundNum.textContent = "You Lost!";
+                
+                message2.textContent = "Final Winner: Computer!";
                 resetGame();
             }
         }
@@ -90,6 +105,20 @@
             btn.style.display = ""; //restore btn display to default (show button again)
             btn.textContent = "Play Again?"; 
             roundResult.textContent = "";
+            message1.textContent = "";
+
+            //get rid of scores and displaychoices divs
+            scoresClass.forEach(element => {
+                element.style.display = "none";
+            });
+
+            displayChoicesClass.forEach(element => {
+                element.style.display = "none";
+            });
+            
+
+            //show game summaries
+            gameSummary.textContent = summaryArr;
             
             imgs.forEach(img => {
                 img.removeEventListener("click", handleEvent);
@@ -112,6 +141,15 @@
             userChoiceDisplay.textContent = "n/a";
             pcChoiceDisplay.textContent = "n/a";
             roundNum.textContent = "";
+            message1.textContent = "";
+            message2.textContent = "";
+            scoresClass.forEach(element => {
+                element.style.display = "";
+            });
+            displayChoicesClass.forEach(element => {
+                element.style.display = "";
+            });
+            
             
             playGame();
 
