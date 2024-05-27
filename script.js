@@ -118,7 +118,8 @@
             
 
             //show game summaries
-            gameSummary.textContent = summaryArr;
+            gameSummary.innerHTML = summaryArr.map(item => `<li>${item}</li>`).join('');
+
             
             imgs.forEach(img => {
                 img.removeEventListener("click", handleEvent);
